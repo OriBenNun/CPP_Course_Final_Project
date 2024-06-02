@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CPP_Course_Final_Project", "CPP_Course_Final_Project\CPP_Course_Final_Project.vcxproj", "{D18CDC8E-8465-4F92-A9C9-2E4544274E6D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fstreamPractice", "fstreamPractice\fstreamPractice.vcxproj", "{36761A76-D77E-4264-881C-A88B5C8CB9E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -18,5 +20,13 @@ Global
 		{D18CDC8E-8465-4F92-A9C9-2E4544274E6D}.Release|Win32.Build.0 = Release|Win32
 		{D18CDC8E-8465-4F92-A9C9-2E4544274E6D}.Release|x64.ActiveCfg = Release|x64
 		{D18CDC8E-8465-4F92-A9C9-2E4544274E6D}.Release|x64.Build.0 = Release|x64
+		{36761A76-D77E-4264-881C-A88B5C8CB9E1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{36761A76-D77E-4264-881C-A88B5C8CB9E1}.Debug|Win32.Build.0 = Debug|Win32
+		{36761A76-D77E-4264-881C-A88B5C8CB9E1}.Debug|x64.ActiveCfg = Debug|x64
+		{36761A76-D77E-4264-881C-A88B5C8CB9E1}.Debug|x64.Build.0 = Debug|x64
+		{36761A76-D77E-4264-881C-A88B5C8CB9E1}.Release|Win32.ActiveCfg = Release|Win32
+		{36761A76-D77E-4264-881C-A88B5C8CB9E1}.Release|Win32.Build.0 = Release|Win32
+		{36761A76-D77E-4264-881C-A88B5C8CB9E1}.Release|x64.ActiveCfg = Release|x64
+		{36761A76-D77E-4264-881C-A88B5C8CB9E1}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 EndGlobal
