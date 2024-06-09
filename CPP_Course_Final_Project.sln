@@ -4,6 +4,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CPP_Course_Final_Project", 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fstreamPractice", "fstreamPractice\fstreamPractice.vcxproj", "{36761A76-D77E-4264-881C-A88B5C8CB9E1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ArrayPractice", "ArrayPractice\ArrayPractice.vcxproj", "{DF191AA1-5006-4AA0-BDBC-1CF4B36F7BB0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -28,5 +30,13 @@ Global
 		{36761A76-D77E-4264-881C-A88B5C8CB9E1}.Release|Win32.Build.0 = Release|Win32
 		{36761A76-D77E-4264-881C-A88B5C8CB9E1}.Release|x64.ActiveCfg = Release|x64
 		{36761A76-D77E-4264-881C-A88B5C8CB9E1}.Release|x64.Build.0 = Release|x64
+		{DF191AA1-5006-4AA0-BDBC-1CF4B36F7BB0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DF191AA1-5006-4AA0-BDBC-1CF4B36F7BB0}.Debug|Win32.Build.0 = Debug|Win32
+		{DF191AA1-5006-4AA0-BDBC-1CF4B36F7BB0}.Debug|x64.ActiveCfg = Debug|x64
+		{DF191AA1-5006-4AA0-BDBC-1CF4B36F7BB0}.Debug|x64.Build.0 = Debug|x64
+		{DF191AA1-5006-4AA0-BDBC-1CF4B36F7BB0}.Release|Win32.ActiveCfg = Release|Win32
+		{DF191AA1-5006-4AA0-BDBC-1CF4B36F7BB0}.Release|Win32.Build.0 = Release|Win32
+		{DF191AA1-5006-4AA0-BDBC-1CF4B36F7BB0}.Release|x64.ActiveCfg = Release|x64
+		{DF191AA1-5006-4AA0-BDBC-1CF4B36F7BB0}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 EndGlobal
