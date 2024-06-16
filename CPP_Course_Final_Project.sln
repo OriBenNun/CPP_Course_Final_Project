@@ -6,6 +6,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fstreamPractice", "fstreamP
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ArrayPractice", "ArrayPractice\ArrayPractice.vcxproj", "{DF191AA1-5006-4AA0-BDBC-1CF4B36F7BB0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BinarySearchPractice", "BinarySearchPractice\BinarySearchPractice.vcxproj", "{9F426DF9-7673-4DF4-BD12-C572C8D40104}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -38,5 +40,13 @@ Global
 		{DF191AA1-5006-4AA0-BDBC-1CF4B36F7BB0}.Release|Win32.Build.0 = Release|Win32
 		{DF191AA1-5006-4AA0-BDBC-1CF4B36F7BB0}.Release|x64.ActiveCfg = Release|x64
 		{DF191AA1-5006-4AA0-BDBC-1CF4B36F7BB0}.Release|x64.Build.0 = Release|x64
+		{9F426DF9-7673-4DF4-BD12-C572C8D40104}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9F426DF9-7673-4DF4-BD12-C572C8D40104}.Debug|Win32.Build.0 = Debug|Win32
+		{9F426DF9-7673-4DF4-BD12-C572C8D40104}.Debug|x64.ActiveCfg = Debug|x64
+		{9F426DF9-7673-4DF4-BD12-C572C8D40104}.Debug|x64.Build.0 = Debug|x64
+		{9F426DF9-7673-4DF4-BD12-C572C8D40104}.Release|Win32.ActiveCfg = Release|Win32
+		{9F426DF9-7673-4DF4-BD12-C572C8D40104}.Release|Win32.Build.0 = Release|Win32
+		{9F426DF9-7673-4DF4-BD12-C572C8D40104}.Release|x64.ActiveCfg = Release|x64
+		{9F426DF9-7673-4DF4-BD12-C572C8D40104}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 EndGlobal
