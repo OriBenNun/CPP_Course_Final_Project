@@ -154,11 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="csvHandler.cpp" />
     <ClCompile Include="fstreamPractice.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="csvHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
