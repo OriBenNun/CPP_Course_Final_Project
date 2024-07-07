@@ -8,6 +8,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ArrayPractice", "ArrayPract
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BinarySearchPractice", "BinarySearchPractice\BinarySearchPractice.vcxproj", "{9F426DF9-7673-4DF4-BD12-C572C8D40104}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LinkedListPractice", "LinkedListPractice\LinkedListPractice.vcxproj", "{0C09E685-515B-44F1-9FC9-88C494B0D0DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -48,5 +50,13 @@ Global
 		{9F426DF9-7673-4DF4-BD12-C572C8D40104}.Release|Win32.Build.0 = Release|Win32
 		{9F426DF9-7673-4DF4-BD12-C572C8D40104}.Release|x64.ActiveCfg = Release|x64
 		{9F426DF9-7673-4DF4-BD12-C572C8D40104}.Release|x64.Build.0 = Release|x64
+		{0C09E685-515B-44F1-9FC9-88C494B0D0DA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0C09E685-515B-44F1-9FC9-88C494B0D0DA}.Debug|Win32.Build.0 = Debug|Win32
+		{0C09E685-515B-44F1-9FC9-88C494B0D0DA}.Debug|x64.ActiveCfg = Debug|x64
+		{0C09E685-515B-44F1-9FC9-88C494B0D0DA}.Debug|x64.Build.0 = Debug|x64
+		{0C09E685-515B-44F1-9FC9-88C494B0D0DA}.Release|Win32.ActiveCfg = Release|Win32
+		{0C09E685-515B-44F1-9FC9-88C494B0D0DA}.Release|Win32.Build.0 = Release|Win32
+		{0C09E685-515B-44F1-9FC9-88C494B0D0DA}.Release|x64.ActiveCfg = Release|x64
+		{0C09E685-515B-44F1-9FC9-88C494B0D0DA}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 EndGlobal
