@@ -101,3 +101,8 @@ void csv_handler::write_data_to_json_file(const std::string& file_name) const
         std::cout << "Unable to open file: " << file_name << "" << '\n';
     }
 }
+
+std::vector<std::vector<std::string>> csv_handler::get_parsed_data()
+{
+    return parsed_vector_data_;
+}

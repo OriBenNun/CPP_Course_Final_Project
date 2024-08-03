@@ -55,6 +55,7 @@ public:
     void print_data() const;
     void write_data_to_csv_file(const std::string& file_name) const;
     void write_data_to_json_file(const std::string& file_name) const;
+    std::vector<std::vector<std::string>> get_parsed_data();
 
 private:
     std::vector<std::string> raw_vector_data_;
