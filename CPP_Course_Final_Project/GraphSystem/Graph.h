@@ -13,7 +13,7 @@ public:
         if (!try_populate_graph(parsed_data))
         {
             std::cout << "Data is not valid for a graph. Aborting." << '\n';
-            // throw std::runtime_error("Data is not valid for a graph. Aborting.");
+            throw std::runtime_error("Data is not valid for a graph. Aborting.");
         }
     }
 

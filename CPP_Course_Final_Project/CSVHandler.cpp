@@ -14,7 +14,10 @@ void csv_handler::parse_data()
         {
             if (item == ',')
             {
-                parsed_line.push_back(current_word);
+                if (!current_word.empty())
+                {
+                    parsed_line.push_back(current_word);
+                }
                 current_word = "";
             }
             else

@@ -54,8 +54,14 @@ bool graph::try_populate_graph(const std::vector<std::vector<std::string>>& pars
             return false;
         }
 
-        for (auto i = 0; i < static_cast<int>(line.size()); i += 3)
+        for (auto i = 0; i < static_cast<int>(line.size()); i += 2)
         {
+            if (i == static_cast<int>(line.size()) - 1)
+            {
+                // Means that we reached the end of the line
+                break;
+            }
+
             if (line[i].empty())
             {
                 return false;
@@ -63,8 +69,8 @@ bool graph::try_populate_graph(const std::vector<std::vector<std::string>>& pars
 
             if (i + 1 > static_cast<int>(line.size()) || line[i + 1].empty() ||
                 i + 2 > static_cast<int>(line.size()) || line[i + 2].empty())
-                // line[i + 1].find_first_not_of("0123456789.") != std::string::npos ||
-                // line[i + 2].find_first_not_of("0123456789.") != std::string::npos)
+            // line[i + 1].find_first_not_of("0123456789.") != std::string::npos ||
+            // line[i + 2].find_first_not_of("0123456789.") != std::string::npos)
             {
                 // Means that the following elements are missing
                 return false;
@@ -77,7 +83,7 @@ bool graph::try_populate_graph(const std::vector<std::vector<std::string>>& pars
             }
 
             const std::string& from_node_name = line[i];
-            
+
             double weight;
 
             // Now we need to check if the weight is a number
@@ -92,22 +98,57 @@ bool graph::try_populate_graph(const std::vector<std::vector<std::string>>& pars
             }
             const std::string& to_node_name = line[i + 2];
 
-            // Now we can add the nodes to the graph
-            
-            // first, we create the nodes
             auto from_node = node(from_node_name);
             auto to_node = node(to_node_name);
-            
+
+            const auto is_from_node_in_graph = std::find_if(nodes_.begin(), nodes_.end(),
+                                                            [&](const node& node)
+                                                            {
+                                                                return node.name == from_node_name;
+                                                            }) != nodes_.end();
+            const auto is_to_node_in_graph = std::find_if(nodes_.begin(), nodes_.end(),
+                                                          [&](const node& node)
+                                                          {
+                                                              return node.name == to_node_name;
+                                                          }) != nodes_.end();
+
+            // first, we check if the nodes already exist in the graph
+            if (is_from_node_in_graph)
+            {
+                // Means that the node already exists
+                from_node = nodes_.at(std::distance(nodes_.begin(),
+                                                    std::find_if(nodes_.begin(), nodes_.end(), [&](const node& node)
+                                                    {
+                                                        return node.name == from_node_name;
+                                                    })));
+            }
+            if (is_to_node_in_graph)
+            {
+                // Means that the node already exists
+                to_node = nodes_.at(std::distance(nodes_.begin(),
+                                                  std::find_if(nodes_.begin(), nodes_.end(), [&](const node& node)
+                                                  {
+                                                      return node.name == to_node_name;
+                                                  })));
+            }
+
             // then we add the edge between the nodes, in this case we're making a two ways graph
             from_node.add_edge(to_node, static_cast<float>(weight));
             to_node.add_edge(from_node, static_cast<float>(weight));
 
-            // finally we add the nodes to the graph
-            add_node(from_node);
-            add_node(to_node);
+            // finally we add the nodes to the graph if they don't already exist
+            if (!is_from_node_in_graph)
+            {
+                add_node(from_node);
+            }
+
+            if (!is_to_node_in_graph)
+            {
+                add_node(to_node);
+            }
         }
     }
-    
+
     return true;
 }
 

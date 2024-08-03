@@ -11,6 +11,7 @@ public:
     {
     }
 
+    // TODO find why this is not working
     void add_edge(const node& to_node, float weight)
     {
         edges_.insert(std::pair<std::string, float>(to_node.name, weight));
