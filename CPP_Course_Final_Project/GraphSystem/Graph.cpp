@@ -1,13 +1,17 @@
 ﻿#include "Graph.h"
 
+#include <algorithm>
+
+#include "Edge.h"
+
 void graph::print_graph() const
 {
     for (const auto& node : nodes_)
     {
-        std::cout << node.name << " -> ";
+        std::cout << node.name << " Edges by weight: ";
         for (const auto& edge : node.get_edges())
         {
-            std::cout << edge.first << " (" << edge.second << ") ";
+            std::cout << node.name << " --> " << edge.to->name << " : " << edge.weight << '\n';
         }
         std::cout << '\n';
     }
@@ -87,14 +91,14 @@ bool graph::try_populate_graph(const std::vector<std::vector<std::string>>& pars
             // Now we need to check if the weight is a number
             try
             {
-                weight = std::stod(line[i + 1]);
+                weight = static_cast<float>(std::stod(line[i + 1]));
             }
             catch (...)
             {
                 // Means that the weight is not a number
                 return false;
             }
-            
+
             const std::string& to_node_name = line[i + 2];
 
             node* from_node;
@@ -118,10 +122,10 @@ bool graph::try_populate_graph(const std::vector<std::vector<std::string>>& pars
             {
                 // Means that the node already exists
                 from_node = &nodes_.at(std::distance(nodes_.begin(),
-                                                    std::find_if(nodes_.begin(), nodes_.end(), [&](const node& node)
-                                                    {
-                                                        return node.name == from_node_name;
-                                                    })));
+                                                     std::find_if(nodes_.begin(), nodes_.end(), [&](const node& node)
+                                                     {
+                                                         return node.name == from_node_name;
+                                                     })));
             }
             else
             {
@@ -129,15 +133,15 @@ bool graph::try_populate_graph(const std::vector<std::vector<std::string>>& pars
                 from_node = &new_node;
                 add_node(new_node);
             }
-            
+
             if (is_to_node_in_graph)
             {
                 // Means that the node already exists
                 to_node = &nodes_.at(std::distance(nodes_.begin(),
-                                                  std::find_if(nodes_.begin(), nodes_.end(), [&](const node& node)
-                                                  {
-                                                      return node.name == to_node_name;
-                                                  })));
+                                                   std::find_if(nodes_.begin(), nodes_.end(), [&](const node& node)
+                                                   {
+                                                       return node.name == to_node_name;
+                                                   })));
             }
             else
             {
@@ -148,8 +152,8 @@ bool graph::try_populate_graph(const std::vector<std::vector<std::string>>& pars
             }
 
             // then we add the edge between the nodes, in this case we're making a two ways graph
-            edge edge = new edge(from_node, to_node, weight);
-            from_node->add_edge(edge);
+            auto _edge = new Edge(from_node, to_node, weight);
+            from_node->add_edge_and_order(*_edge);
             // to_node->add_edge(from_node, static_cast<float>(weight));
         }
     }

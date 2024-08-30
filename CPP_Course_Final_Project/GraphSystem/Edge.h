@@ -1,15 +1,12 @@
 ﻿#pragma once
-#include <string>
-
 #include "Node.h"
 
-class edge
+class Edge
 {
 public:
-    edge(node* from, node* to, float weight) : from(from), to(to), weight(weight){}
-
-private:
-    float weight;
     node* from;
     node* to;
+    int weight;
+
+    explicit Edge(node* from, node* to, int weight) : from(from), to(to), weight(weight) {}
 };

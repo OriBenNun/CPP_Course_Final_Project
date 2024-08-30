@@ -1,8 +1,12 @@
 ﻿#pragma once
+#include <algorithm>
 #include <map>
 #include <string>
+#include <vector>
 
 #include "Edge.h"
+
+class Edge;
 
 class node
 {
@@ -11,18 +15,20 @@ public:
 
     explicit node(std::string name) : name(std::move(name))
     {
-    }
-    
-    void add_edge(const edge& new_edge)
-    {
-        edges_.push_back(new_edge);
+        edges_ = new std::vector<Edge>();
     }
 
-    std::vector<edge> get_edges() const
+    void add_edge_and_order(const Edge& new_edge)
+    {
+        edges_.push_back(new_edge);
+        std::sort(edges_->begin(), edges_->end(), []( Edge* a, const Edge& b) { return a->weight < b.weight; });
+    }
+
+    std::vector<Edge>* get_edges() const
     {
         return edges_;
     }
 
 private:
-    std::vector<edge> edges_;
+    std::vector<Edge>* edges_;
 };
