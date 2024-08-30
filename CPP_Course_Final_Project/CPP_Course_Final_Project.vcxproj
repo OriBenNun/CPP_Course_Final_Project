@@ -156,6 +156,7 @@
   <ItemGroup>
     <ClCompile Include="CPP_Course_Final_Project.cpp" />
     <ClCompile Include="CSVHandler.cpp" />
+    <ClCompile Include="GraphSystem\Edge.cpp" />
     <ClCompile Include="GraphSystem\Graph.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -219,6 +220,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSVHandler.h" />
+    <ClInclude Include="GraphSystem\Edge.h" />
     <ClInclude Include="GraphSystem\Graph.h" />
     <ClInclude Include="GraphSystem\Node.h" />
   </ItemGroup>

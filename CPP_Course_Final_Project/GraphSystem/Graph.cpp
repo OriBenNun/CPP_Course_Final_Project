@@ -69,8 +69,6 @@ bool graph::try_populate_graph(const std::vector<std::vector<std::string>>& pars
 
             if (i + 1 > static_cast<int>(line.size()) || line[i + 1].empty() ||
                 i + 2 > static_cast<int>(line.size()) || line[i + 2].empty())
-            // line[i + 1].find_first_not_of("0123456789.") != std::string::npos ||
-            // line[i + 2].find_first_not_of("0123456789.") != std::string::npos)
             {
                 // Means that the following elements are missing
                 return false;
@@ -84,7 +82,7 @@ bool graph::try_populate_graph(const std::vector<std::vector<std::string>>& pars
 
             const std::string& from_node_name = line[i];
 
-            double weight;
+            float weight;
 
             // Now we need to check if the weight is a number
             try
@@ -101,6 +99,8 @@ bool graph::try_populate_graph(const std::vector<std::vector<std::string>>& pars
 
             node* from_node;
             node* to_node;
+
+            // TODO rewrite this using for loops to make it more readable
 
             const auto is_from_node_in_graph = std::find_if(nodes_.begin(), nodes_.end(),
                                                             [&](const node& node)
@@ -148,7 +148,8 @@ bool graph::try_populate_graph(const std::vector<std::vector<std::string>>& pars
             }
 
             // then we add the edge between the nodes, in this case we're making a two ways graph
-            from_node->add_edge(*to_node, static_cast<float>(weight));
+            edge edge = new edge(from_node, to_node, weight);
+            from_node->add_edge(edge);
             // to_node->add_edge(from_node, static_cast<float>(weight));
         }
     }

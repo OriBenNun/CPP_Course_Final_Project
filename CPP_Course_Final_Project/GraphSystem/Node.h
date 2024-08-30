@@ -2,6 +2,8 @@
 #include <map>
 #include <string>
 
+#include "Edge.h"
+
 class node
 {
 public:
@@ -10,18 +12,17 @@ public:
     explicit node(std::string name) : name(std::move(name))
     {
     }
-
-    // TODO find why this is not working
-    void add_edge(const node& to_node, float weight)
+    
+    void add_edge(const edge& new_edge)
     {
-        edges_.insert(std::pair<std::string, float>(to_node.name, weight));
+        edges_.push_back(new_edge);
     }
 
-    std::map<std::string, float> get_edges() const
+    std::vector<edge> get_edges() const
     {
         return edges_;
     }
 
 private:
-    std::map<std::string, float> edges_ = std::map<std::string, float>();
+    std::vector<edge> edges_;
 };

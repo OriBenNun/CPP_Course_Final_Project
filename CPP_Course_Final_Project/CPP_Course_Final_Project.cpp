@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
 
     // here we get the file name from the user
     std::string file_name;
-    std::cout << "Enter the file name (should be a .csv file inside the same folder as this .exe): ";
+    std::cout << "Enter the file name including .csv (should be a .csv file inside the same folder as this .exe): ";
     std::cin >> file_name;
 
     csv_handler csv_handler(file_name);
