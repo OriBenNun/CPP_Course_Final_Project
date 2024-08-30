@@ -1,20 +1,12 @@
 ﻿#include "Graph.h"
 
 #include <algorithm>
-
-#include "Edge.h"
+#include <string>
+#include <unordered_map>
 
 void graph::print_graph() const
 {
-    for (const auto& node : nodes_)
-    {
-        std::cout << node.name << " Edges by weight: ";
-        for (const auto& edge : node.get_edges())
-        {
-            std::cout << node.name << " --> " << edge.to->name << " : " << edge.weight << '\n';
-        }
-        std::cout << '\n';
-    }
+    
 }
 
 // The data is valid if:
@@ -46,122 +38,68 @@ void graph::print_graph() const
  */
 bool graph::try_populate_graph(const std::vector<std::vector<std::string>>& parsed_data)
 {
-    if (parsed_data.empty())
-    {
-        return false;
-    }
+    for (const auto& line : parsed_data) {
+        if (line.size() >= 3) {
+            std::string node1 = line[0];
+            std::string node2 = line[2];
 
-    for (auto& line : parsed_data)
-    {
-        if (line.size() < 2)
-        {
-            return false;
-        }
+            if (node1 != node2) {
+                std::string weightStr = line[1];
 
-        for (auto i = 0; i < static_cast<int>(line.size()); i += 2)
-        {
-            if (i == static_cast<int>(line.size()) - 1)
-            {
-                // Means that we reached the end of the line
-                break;
+                try {
+                    float weight = std::stof(weightStr);
+                    addNode(node1);
+                    addNode(node2);
+                    addEdge(node1, node2, weight);
+
+                    for (size_t i = 3; i < line.size(); i += 2) {
+                        std::string nextNode = line[i];
+                        std::string nextWeightStr = line[i + 1];
+
+                        if (nextNode.empty() || nextWeightStr.empty()) {
+                            break; // Invalid format
+                        }
+
+                        try {
+                            float nextWeight = std::stof(nextWeightStr);
+                            addNode(nextNode);
+                            addEdge(node2, nextNode, nextWeight);
+                            node2 = nextNode;
+                        } catch (const std::invalid_argument&) {
+                            return false; // Invalid weight format
+                        }
+                    }
+                } catch (const std::invalid_argument&) {
+                    return false; // Invalid weight format
+                }
+            } else {
+                return false; // Self-loop is not allowed
             }
-
-            if (line[i].empty())
-            {
-                return false;
-            }
-
-            if (i + 1 > static_cast<int>(line.size()) || line[i + 1].empty() ||
-                i + 2 > static_cast<int>(line.size()) || line[i + 2].empty())
-            {
-                // Means that the following elements are missing
-                return false;
-            }
-
-            if (line[i] == line[i + 2])
-            {
-                // Means that the for node and the to node are the same
-                return false;
-            }
-
-            const std::string& from_node_name = line[i];
-
-            float weight;
-
-            // Now we need to check if the weight is a number
-            try
-            {
-                weight = static_cast<float>(std::stod(line[i + 1]));
-            }
-            catch (...)
-            {
-                // Means that the weight is not a number
-                return false;
-            }
-
-            const std::string& to_node_name = line[i + 2];
-
-            node* from_node;
-            node* to_node;
-
-            // TODO rewrite this using for loops to make it more readable
-
-            const auto is_from_node_in_graph = std::find_if(nodes_.begin(), nodes_.end(),
-                                                            [&](const node& node)
-                                                            {
-                                                                return node.name == from_node_name;
-                                                            }) != nodes_.end();
-            const auto is_to_node_in_graph = std::find_if(nodes_.begin(), nodes_.end(),
-                                                          [&](const node& node)
-                                                          {
-                                                              return node.name == to_node_name;
-                                                          }) != nodes_.end();
-
-            // first, we check if the nodes already exist in the graph
-            if (is_from_node_in_graph)
-            {
-                // Means that the node already exists
-                from_node = &nodes_.at(std::distance(nodes_.begin(),
-                                                     std::find_if(nodes_.begin(), nodes_.end(), [&](const node& node)
-                                                     {
-                                                         return node.name == from_node_name;
-                                                     })));
-            }
-            else
-            {
-                auto new_node = node(from_node_name);
-                from_node = &new_node;
-                add_node(new_node);
-            }
-
-            if (is_to_node_in_graph)
-            {
-                // Means that the node already exists
-                to_node = &nodes_.at(std::distance(nodes_.begin(),
-                                                   std::find_if(nodes_.begin(), nodes_.end(), [&](const node& node)
-                                                   {
-                                                       return node.name == to_node_name;
-                                                   })));
-            }
-            else
-            {
-                // Means that the node doesn't exist
-                auto new_node = node(to_node_name);
-                to_node = &new_node;
-                add_node(new_node);
-            }
-
-            // then we add the edge between the nodes, in this case we're making a two ways graph
-            auto _edge = new Edge(from_node, to_node, weight);
-            from_node->add_edge_and_order(*_edge);
-            // to_node->add_edge(from_node, static_cast<float>(weight));
+        } else {
+            return false; // Invalid line format
         }
     }
-
+    
     return true;
 }
 
-void graph::add_node(const node& new_node)
-{
-    nodes_.push_back(new_node);
+
+void graph::addNode(const std::string& name) {
+    if (nodes.find(name) == nodes.end()) {
+        nodes[name] = new Node(name);
+    }
+}
+
+void graph::addEdge(const std::string& node1, const std::string& node2, float weight) {
+    if (nodes.find(node1) != nodes.end() && nodes.find(node2) != nodes.end()) {
+        nodes[node1]->neighbors[node2] = weight;
+        nodes[node2]->neighbors[node1] = weight;
+    }
+}
+
+std::unordered_map<std::string, float> graph::getNeighbors(const std::string& node) {
+    if (nodes.find(node) != nodes.end()) {
+        return nodes[node]->neighbors;
+    }
+    return {};
 }

@@ -18,8 +18,13 @@ public:
     }
 
     void print_graph() const;
+
 private:
-    std::vector<node> nodes_;
     bool try_populate_graph(const std::vector<std::vector<std::string>>& parsed_data);
-    void add_node(const node& new_node);
+    void addNode(const std::string& node_name);
+    void addEdge(const std::string& node1, const std::string& node2, float weight);
+    std::unordered_map<std::string, float> getNeighbors(const std::string& node);
+
+    std::unordered_map<std::string, Node*> nodes;
+
 };
